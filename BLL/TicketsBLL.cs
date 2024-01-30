@@ -16,12 +16,12 @@ namespace Tickets.BLL
 
         public bool Existe(int TicketId)
         {
-            return _context.Sistemas.Any(S => S.TicketId == TicketId);
+            return _context.SistemasNew.Any(S => S.TicketId == TicketId);
         }
 
         public bool Insertar(Sistemas Ticket)
         {
-            _context.Sistemas.Add(Ticket);
+            _context.SistemasNew.Add(Ticket);
             int cantidad = _context.SaveChanges();
             return cantidad > 0;
         }
@@ -43,21 +43,21 @@ namespace Tickets.BLL
 
         public bool Eliminar(Sistemas Ticket)
         {
-            _context.Sistemas.Remove(Ticket);
+            _context.SistemasNew.Remove(Ticket);
             int cantidad = _context.SaveChanges();
             return cantidad > 0;
         }
 
         public Sistemas? Buscar(int SistemaId)
         {
-            return _context.Sistemas
+            return _context.SistemasNew
                 .AsNoTracking()
                 .FirstOrDefault(s => s.SistemaId == SistemaId);
         }
 
         public List<Sistemas> GetList(Expression<Func<Sistemas, bool>> Criterio)
         {
-            return _context.Sistemas
+            return _context.SistemasNew
                 .Where(Criterio)
                 .AsNoTracking()
                 .ToList();
